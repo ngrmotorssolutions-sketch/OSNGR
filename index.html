@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte de Servicio Técnico - NGR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #fff;
+      color: #000;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #0B488C;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    .logo {
+      width: 140px;
+    }
+    .encabezado {
+      text-align: right;
+      color: #0B488C;
+      font-size: 14px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #0B488C;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .campo, .campo input, .campo textarea {
+      display: block;
+      margin: 5px 0;
+      width: 100%;
+    }
+    ul {
+      margin-top: 0;
+    }
+    .firmas {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      gap: 10px;
+    }
+    .firma-box {
+      width: 45%;
+      border-top: 1px solid #000;
+      padding-top: 10px;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid #000;
+      width: 100%;
+      height: 100px;
+    }
+    button {
+      padding: 10px;
+      background-color: #0B488C;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #062f5c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://i.imgur.com/ohC4Pm8.png" alt="Logo NGR" class="logo">
+    <div class="encabezado">
+      <strong>NGR Motors Solutions</strong><br>
+      <em>Crecemos juntos, impulsando tu éxito</em><br>
+      📧 servicio.ngr@outlook.com<br>
+      📲 WhatsApp: +52 5540977180<br>
+    </div>
+  </header>
+
+  <h1>📄 REPORTE DE SERVICIO TÉCNICO</h1>
+
+  <div class="section">
+    <h2>🔹 1. DATOS DEL REPORTE</h2>
+    <div class="campo">Folio: <span id="folio"></span></div>
+    <div class="campo"><label>Fecha de atención: <input type="date"></label></div>
+    <div class="campo"><label>Hora de inicio: <input type="time"></label> Hora final: <input type="time"></label></div>
+    <div class="campo"><label>Técnico responsable: <input type="text"></label></div>
+  </div>
+
+  <div class="section">
+    <h2>🔹 2. DATOS DEL CLIENTE</h2>
+    <div class="campo"><label>Nombre o razón social: <input type="text"></label></div>
+    <div class="campo"><label>Contacto: <input type="text"></label></div>
+    <div class="campo"><label>Teléfono / WhatsApp: <input type="text"></label></div>
+    <div class="campo"><label>Dirección de servicio: <textarea></textarea></label></div>
+  </div>
+
+  <div class="section">
+    <h2>🔹 3. DATOS DEL EQUIPO / VEHÍCULO</h2>
+    <div class="campo"><label>Marca / Modelo: <input type="text"></label></div>
+    <div class="campo"><label>Tipo: <input type="text" placeholder="Motor / Generador / Otro"></label></div>
+    <div class="campo"><label>N° de serie: <input type="text"></label></div>
+    <div class="campo"><label>Horas de uso: <input type="number"></label></div>
+    <div class="campo"><label>Placas / Identificación: <input type="text"></label></div>
+  </div>
+
+  <div class="section">
+    <h2>🔹 4. SERVICIO REALIZADO</h2>
+    <ul>
+      <li><input type="checkbox"> Diagnóstico general</li>
+      <li><input type="checkbox"> Mantenimiento preventivo</li>
+      <li><input type="checkbox"> Reparación correctiva</li>
+      <li><input type="checkbox"> Ajuste de parámetros</li>
+      <li><input type="checkbox"> Otro: <input type="text"></li>
+    </ul>
+    <div class="campo"><label>Descripción del servicio realizado: <textarea rows="5"></textarea></label></div>
+  </div>
+
+  <div class="section">
+    <h2>🔹 5. OBSERVACIONES Y RECOMENDACIONES</h2>
+    <textarea rows="5" style="width:100%;"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>🔹 6. PRÓXIMO MANTENIMIENTO</h2>
+    <ul>
+      <li><input type="checkbox"> A las <input type="number"> horas de uso</li>
+      <li><input type="checkbox"> En fecha estimada: <input type="date"></li>      
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🔹 7. FIRMAS</h2>
+    <div class="firmas">
+      <div class="firma-box">
+        <p>CLIENTE</p>
+        <canvas id="firmaCliente"></canvas>
+        <button onclick="limpiarFirma('firmaCliente')">🧹 Borrar firma</button>
+      </div>
+      <div class="firma-box">
+        <p>TÉCNICO</p>
+        <canvas id="firmaTecnico"></canvas>
+        <button onclick="limpiarFirma('firmaTecnico')">🧹 Borrar firma</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>✅ CONDICIONES DEL SERVICIO</h2>
+    <ul>
+      <li>El servicio fue realizado bajo las condiciones descritas.</li>
+      <li>Garantía de <input type="number"> días solo en piezas nuevas instaladas por NGR Motors Solutions.</li>
+      <li>No se garantiza funcionamiento si el equipo es intervenido por terceros.</li>
+      <li>Verifique que el servicio fue entregado conforme antes de firmar.</li>
+    </ul>
+  </div>
+
+  <div class="section" style="text-align:center;">
+    <button onclick="window.print()">🖨️ Imprimir o Guardar como PDF</button>
+  </div>
+
+  <script>
+    const folio = document.getElementById("folio");
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    const hh = String(now.getHours()).padStart(2, "0");
+    const mi = String(now.getMinutes()).padStart(2, "0");
+    const ss = String(now.getSeconds()).padStart(2, "0");
+    folio.textContent = `NGR-REP-${yyyy}${mm}${dd}-${hh}${mi}${ss}`;
+
+    function activarFirma(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext("2d");
+      let painting = false;
+
+      canvas.addEventListener("mousedown", () => (painting = true));
+      canvas.addEventListener("mouseup", () => {
+        painting = false;
+        ctx.beginPath();
+      });
+      canvas.addEventListener("mousemove", draw);
+
+      function draw(e) {
+        if (!painting) return;
+        const rect = canvas.getBoundingClientRect();
+        ctx.lineWidth = 2;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = "#000";
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+      }
+    }
+
+    function limpiarFirma(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    activarFirma("firmaCliente");
+    activarFirma("firmaTecnico");
+  </script>
+</body>
+</html>
